@@ -53,10 +53,6 @@ class Agent():
               q_values = self.policy_net(state)
               a = q_values.argmax().item()
 
-      # Decay epsilon
-      if self.epsilon > self.epsilon_min:
-          self.epsilon -= self.epsilon_decay
-
       return a
 
     def train_policy_net(self, frame):
