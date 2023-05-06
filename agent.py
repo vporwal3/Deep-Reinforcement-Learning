@@ -48,7 +48,7 @@ class Agent():
           a = random.randrange(self.action_size)
       else:
           # Choose the best action
-          state = torch.FloatTensor(state).unsqueeze(0).to(device)
+          state = torch.FloatTensor(state).unsqueeze(0).to(device) #unsqueeze to convert the state of (3, 84, 84) to (1, 3, 84, 84) to pass in the nn
           with torch.no_grad():
               q_values = self.policy_net(state)
               a = q_values.argmax().item()
