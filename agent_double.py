@@ -94,7 +94,7 @@ class Agent():
         target = rewards.unsqueeze(1) + (self.discount_factor * target * mask.unsqueeze(1))
 
 
-        # Compute the Huber Loss
+        # Compute the Loss
         loss = nn.MSELoss(pred, target.detach())
 
         # Optimize the model, .step() both the optimizer and the scheduler!
