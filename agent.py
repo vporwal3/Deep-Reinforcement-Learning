@@ -6,7 +6,7 @@ import torch.nn as nn
 import torch.optim as optim
 import torch.nn.functional as F
 from torch.autograd import Variable
-from memory import ReplayMemory, ReplayMemoryLSTM
+from memory import ReplayMemory
 from model import DQN
 from utils import find_max_lives, check_live, get_frame, get_init_state
 from config import *
@@ -92,7 +92,7 @@ class Agent():
         expected_q_values = rewards.unsqueeze(1) + self.discount_factor * max_next_q_values * mask.unsqueeze(1)
 
         # Compute the Huber Loss
-        loss = F.smooth_l1_loss(q_values, expected_q_values.detach())
+        loss = nn.mse_loss(q_values, expected_q_values.detach())
 
         # Optimize the model
         self.optimizer.zero_grad()
