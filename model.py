@@ -2,7 +2,7 @@ import torch
 import torch.nn as nn
 import torch.nn.functional as F
 
-from config import HEIGHT, WIDTH, lstm_seq_length
+from config import HEIGHT, WIDTH
 
 class DQN(nn.Module):
     def __init__(self, action_size):
