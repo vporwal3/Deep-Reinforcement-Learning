@@ -18,8 +18,7 @@ class ReplayMemory(object):
         else:
             sample_range = frame
 
-        # history size
-        sample_range -= (HISTORY_SIZE + 1)
+        
 
         idx_sample = random.sample(range(sample_range), batch_size)
         for i in idx_sample:
