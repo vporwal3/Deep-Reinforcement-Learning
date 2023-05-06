@@ -6,7 +6,7 @@ import torch.nn as nn
 import torch.optim as optim
 import torch.nn.functional as F
 from torch.autograd import Variable
-from memory import ReplayMemory, ReplayMemoryLSTM
+from memory import ReplayMemory
 from model import DQN
 from utils import find_max_lives, check_live, get_frame, get_init_state
 from config import *
@@ -95,7 +95,7 @@ class Agent():
 
 
         # Compute the Huber Loss
-        loss = F.smooth_l1_loss(pred, target.detach())
+        loss = nn.MSELoss(pred, target.detach())
 
         # Optimize the model, .step() both the optimizer and the scheduler!
         self.optimizer.zero_grad()
