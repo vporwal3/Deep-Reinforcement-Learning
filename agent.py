@@ -92,7 +92,7 @@ class Agent():
         expected_q_values = rewards.unsqueeze(1) + self.discount_factor * max_next_q_values * mask.unsqueeze(1)
 
         # Compute the Huber Loss
-        loss = nn.mse_loss(q_values, expected_q_values.detach())
+        loss = nn.MSELoss(q_values, expected_q_values.detach())
 
         # Optimize the model
         self.optimizer.zero_grad()
